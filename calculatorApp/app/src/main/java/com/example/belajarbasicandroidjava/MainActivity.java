@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Display the result (You can modify this according to your requirement)
 //                Toast.makeText(MainActivity.this, "Sum is: " + sum, Toast.LENGTH_SHORT).show();
-                resultTextView.setText("Sum is: " + sum);
+                resultTextView.setText(""+sum);
             }
         });
 
@@ -61,7 +61,39 @@ public class MainActivity extends AppCompatActivity {
 
                 // Display the result (You can modify this according to your requirement)
 //                Toast.makeText(MainActivity.this, "Sum is: " + sum, Toast.LENGTH_SHORT).show();
-                resultTextView.setText("Sum is: " + sum);
+                resultTextView.setText(""+sum);
+            }
+        });
+
+        Button multiplyButton = findViewById(R.id.multiply);
+        multiplyButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                float sum;
+                int num1 = Integer.parseInt(editTextNumber1.getText().toString());
+                int num2 = Integer.parseInt(editTextNumber2.getText().toString());
+
+                sum = num1 * num2;
+
+                // Display the result (You can modify this according to your requirement)
+//                Toast.makeText(MainActivity.this, "Sum is: " + sum, Toast.LENGTH_SHORT).show();
+                resultTextView.setText(""+sum);
+            }
+        });
+
+        Button divideButton = findViewById(R.id.divide);
+        divideButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                float sum;
+                float num1 = Float.parseFloat(editTextNumber1.getText().toString());
+                float num2 = Float.parseFloat(editTextNumber2.getText().toString());
+
+                sum = num1 / num2;
+
+                // Display the result (You can modify this according to your requirement)
+//                Toast.makeText(MainActivity.this, "Sum is: " + sum, Toast.LENGTH_SHORT).show();
+                resultTextView.setText(""+sum);
             }
         });
 
