@@ -153,7 +153,7 @@
         android:ems="10"
         android:fontFamily="sans-serif"
         android:inputType="text"
-        android:text="Made By Raihan ❤️"
+        android:text="Made By Raihan"
         android:textAlignment="center"
         android:textSize="12sp"
         android:typeface="sans"
