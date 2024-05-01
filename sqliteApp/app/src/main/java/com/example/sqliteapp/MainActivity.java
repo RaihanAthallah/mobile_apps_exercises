@@ -58,12 +58,13 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-     View.OnClickListener operasi = new View.OnClickListener(){
+    View.OnClickListener operasi = new View.OnClickListener(){
         @Override
         public void onClick(View v){
-            switch(v.getId()){
-                case R.id.simpan: simpan(); break;
-                case R.id.tampil: tampil();break;
+            if (v.getId() == R.id.simpan) {
+                simpan();
+            } else if (v.getId() == R.id.tampil) {
+                tampil();
             }
         }
     };
@@ -73,22 +74,26 @@ public class MainActivity extends AppCompatActivity {
         ContentValues dataku = new ContentValues();
         dataku.put("nrp",nrp.getText().toString());
         dataku.put("nama",nama.getText().toString());
-        dbku.insert("mhs",null,dataku);
+        dbku.insert("mahasiswa",null,dataku);
         Toast.makeText(this,"Data Tersimpan",Toast.LENGTH_LONG).show();
     }
 
     private void tampil(){
-        Cursor cur = dbku.rawQuery("select * from mhs where nrp='" +
+    Cursor cur = dbku.rawQuery("select * from mahasiswa where nrp='" +
             nrp.getText().toString()+ "'",null);
-        if(cur.getCount() >0) {
-            Toast.makeText(this,"Data Ditemukan Sejumlah " +
-            cur.getCount(),Toast.LENGTH_LONG).show();
-            cur.moveToFirst();
-            nama.setText(cur.getString(cur.getColumnIndex("nama")));
+    if(cur.getCount() >0) {
+        Toast.makeText(this,"Data Ditemukan Sejumlah " +
+                cur.getCount(),Toast.LENGTH_LONG).show();
+        cur.moveToFirst();
+        int columnIndex = cur.getColumnIndex("nama");
+        if (columnIndex != -1) {
+            String result = cur.getString(columnIndex);
+            nama.setText(result); // set the text of the EditText to the result
         }
-        else
-            Toast.makeText(this,"Data Tidak Ditemukan",Toast.LENGTH_LONG).show();
     }
+    else
+        Toast.makeText(this,"Data Tidak Ditemukan",Toast.LENGTH_LONG).show();
+}
 
 
 }
